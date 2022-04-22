@@ -1,15 +1,19 @@
-import { useRef } from "react";
+import { useState,useRef } from "react";
 import styled from "styled-components";
-import emailjs from 'emailjs-com'
+import emailjs from '@emailjs/browser'
 
 function App() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
 
   const form = useRef()
 
+  // Send message to email via emailjs
   const sendEmail = (e) => {
     e.preventDefault()
 
-    emailjs.js('service_kp10w9s', 'template_dnlegx6', form.current, 'ctpiNQ5Qlt0E6k_G5')
+    emailjs.sendForm('service_kp10w9s', 'template_dnlegx6', form.current, 'ctpiNQ5Qlt0E6k_G5')
       .then((result) => {
         console.log(result.text)
         alert('Sent!')
@@ -17,6 +21,11 @@ function App() {
         console.log(error.text)
         alert('Unable to send')
       })
+
+    // Clear form after submit
+    setName('')
+    setEmail('')
+    setMessage('')
   }
 
   return (
@@ -31,6 +40,8 @@ function App() {
             <Input 
               type='text'
               name='user_name'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required         
             />
           </FormGroup>  
@@ -41,6 +52,8 @@ function App() {
             <Input 
               type='email'
               email='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </FormGroup>
@@ -51,13 +64,17 @@ function App() {
             <TextArea
               type='text'
               message='message'
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               required
             />
           </FormGroup>
-          <Button type='submit' value='send'>Send</Button>
-        </Form> 
-
-        
+          <Button 
+            type='submit' 
+            value='send'
+            >Send
+          </Button>
+        </Form>      
 
     </PageContainer>
   );
