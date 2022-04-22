@@ -51,31 +51,41 @@ function App() {
 }
 
 const PageContainer = styled.div`
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Mukta', sans-serif;
 `
 
 const PageHeader = styled.h1`
-
+  text-align: center;
+  margin: 0rem;
+  font-size: 3rem;
 `
 
 const PageSubHeader = styled.h4`
-
+  text-align: center;
+  margin: 0;
+  margin-top: 4rem;
 `
 
 const ContactCard = styled.div`
-
+  margin: 0 auto;
 `
 
 const InputFields = styled.div`
-
+  
 `
 
 const Label = styled.h3`
-
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
 `
 
 const Input = styled.input`
-
+  display: flex;
+  flex-direction: column;
 `
 
 const TextArea = styled.textarea`
@@ -83,6 +93,8 @@ const TextArea = styled.textarea`
 `
 
 const Button = styled.button`
+  font-size: 1.5rem;
+
 `
 
 export default App;
