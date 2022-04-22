@@ -1,50 +1,63 @@
-import { useState } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
+import emailjs from 'emailjs-com'
 
 function App() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
+
+  const form = useRef()
+
+  const sendEmail = (e) => {
+    e.preventDefault()
+
+    emailjs.js('service_kp10w9s', 'template_dnlegx6', form.current, 'ctpiNQ5Qlt0E6k_G5')
+      .then((result) => {
+        console.log(result.text)
+        alert('Sent!')
+      }, (error) => {
+        console.log(error.text)
+        alert('Unable to send')
+      })
+  }
 
   return (
     <PageContainer>
       <PageSubHeader>Get In Touch</PageSubHeader>
       <PageHeader>Contact</PageHeader>
 
-      <ContactCard>
+        <Form ref={form} onSubmit={sendEmail}>
+          {/* Name */}
+          <FormGroup>
+            <Label htmlFor='name'>Name</Label>        
+            <Input 
+              type='text'
+              name='user_name'
+              required         
+            />
+          </FormGroup>  
 
-        <InputFields>
-          <Label htmlFor='name'>
+          {/* Email */}
+          <FormGroup>
+            <Label htmlFor='email'>Email</Label>
             <Input 
-              type='text'
-              name='name' 
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            Name
-          </Label>        
-          <Label htmlFor='email'>
-            <Input 
-              type='text'
+              type='email'
               email='email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              required
             />
-            Email
-          </Label>      
-          <Label htmlFor='text-area'>
+          </FormGroup>
+
+          {/* Message */}
+          <FormGroup>    
+            <Label htmlFor='text-area'>Message</Label>
             <TextArea
               type='text'
               message='message'
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              required
             />
-            Message
-          </Label>
-        </InputFields>
+          </FormGroup>
+          <Button type='submit' value='send'>Send</Button>
+        </Form> 
 
-        <Button>Send</Button>
-      </ContactCard>
+        
 
     </PageContainer>
   );
@@ -69,12 +82,13 @@ const PageSubHeader = styled.h4`
   margin-top: 4rem;
 `
 
-const ContactCard = styled.div`
+const Form = styled.form`
   margin: 0 auto;
+
 `
 
-const InputFields = styled.div`
-  
+const FormGroup = styled.div`
+
 `
 
 const Label = styled.h3`
