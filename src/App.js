@@ -92,7 +92,7 @@ const PageContainer = styled.div`
   justify-content: center;
   color: lightgray;
   padding: 4rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Fira Sans Condensed', sans-serif;
 `
 
 const PageHeader = styled.h1`
@@ -164,7 +164,7 @@ const TextArea = styled.textarea`
   border: none;
   border-bottom: 2px solid #666;
   background: none;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   color: white;
 
@@ -190,6 +190,7 @@ const Button = styled.button`
   cursor: pointer;
   transition: 0.2s ease;
   font-weight: 600;
+  text-align: left;
 
   &:hover {
     opacity: 70%;
